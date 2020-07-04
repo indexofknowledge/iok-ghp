@@ -24,15 +24,14 @@ jobs:
           git submodule update --init
 
       - name: Install and Build 🔧
+        working-directory: iok/v4
         run: |
-          cd iok/v4
           npm install
           npm run build
-          mv build ../..
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages
-          FOLDER: build
+          FOLDER: iok/v4/build
