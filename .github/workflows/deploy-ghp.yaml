@@ -1,7 +1,7 @@
 name: deploy-ghp
 
 on:
-  push:
+  pull_request:
     branches:
       - master
   schedule:
@@ -22,6 +22,7 @@ jobs:
       - name: Update IoK submodule ⬆️
         run: |
           git submodule update --init
+          cd iok && git checkout origin/rustie-test
 
       - name: Install and Build 🔧
         working-directory: iok/v4
